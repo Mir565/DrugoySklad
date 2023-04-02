@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+  <meta name="author" content="GeeksLabs">
+  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+  <link rel="shortcut icon" href="img/favicon.png">
+  <title>Smart Savdo</title>
+  <!-- Bootstrap CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <!-- bootstrap theme -->
+  <link href="/css/bootstrap-theme.css" rel="stylesheet">
+  <!--external css-->
+  <!-- font icon -->
+  <link href="/css/elegant-icons-style.css" rel="stylesheet" />
+  <link href="/css/font-awesome.min.css" rel="stylesheet" />
+  <!-- full calendar css-->
+  <link href="/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+  <link href="/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+  <!-- easy pie chart-->
+  <link href="/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+  <!-- owl carousel -->
+  <link rel="/tylesheet" href="css/owl.carousel.css" type="text/css">
+  <link href="/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <link rel="/stylesheet" href="css/fullcalendar.css">
+  <link href="/css/widgets.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/style-responsive.css" rel="stylesheet" />
+  <link href="/css/xcharts.min.css" rel=" stylesheet">
+  <link href="/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+</head>
+<script>
+  document.title=document.getElementsByClassName("page-header")[0].innerText;
+  
+ </script>
+<body>
+<%- include('nav')%>
+  <!--sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <!--overview start-->
+        <div class="row">
+          <div class="col-lg-12">
+            <ol class="breadcrumb">
+              <li><i class="fa fa-home"></i><a href="index.html">Домашняя Страница</a></li>
+              <li><i class="fa fa-laptop"></i>Основные </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="row">
+            <center><h1 id="comment" ></h1></center>
+            <center><h1 id="comment1" ></h1></center>
+           <br>
+            <center id="allmonth"></center>
+            <br>
+            
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="sssa1">
+        
+            <div class="info-box dark-bg"   onclick="bos()" ;>
+              <i class="fa fa-money"></i>
+            
+              <div class="count" id="naqd" ></div>
+              <div class="title" id="day">  </div>
+          
+            
+            </div>
+        
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="sssa2">
+            <div class="info-box dark-bg" onclick="bos1()">
+              <i class="fa fa-credit-card"></i>
+              <div class="count" id="plastik"></div>
+              <div class="title" id="day"></div>
+          
+            </div>
+          
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="sssa3">
+            <div class="info-box dark-bg" onclick="bos2()">
+              <i class="fa fa-exchange"></i>
+              <div class="count" id="pulkochirish"></div>
+              <div class="title" id="day"></div>
+              
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+          
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="sssa4">
+            <div class="info-box dark-bg">
+              <i class="fa fa-bank"></i>
+              <div class="count" id="qarz"></div>
+              <div class="title" id="day" ></div>
+            </div>
+            <!--/.info-box-->
+          </div>
+       
+          <center><h1 id="hisobot"></h1></center>
+          <table class="table">
+            <tbody id="mahsulot" class="col-lg-12">
+            
+                                   </tbody>
+          </table>
+          <!--/.col-->
+
+        </div>
+
+        <!--/.row-->
+
+
+        
+  <!-- javascripts -->
+  <script>
+    document.title=document.getElementsByClassName("page-header")[0].innerText;
+    
+   </script>
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery-ui-1.10.4.min.js"></script>
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+  <!-- bootstrap -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- nice scroll -->
+  <script src="js/jquery.scrollTo.min.js"></script>
+  <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+  <!-- charts scripts -->
+  <script src="assets/jquery-knob/js/jquery.knob.js"></script>
+  <script src="js/jquery.sparkline.js" type="text/javascript"></script>
+  <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+  <script src="js/owl.carousel.js"></script>
+  <!-- jQuery full calendar -->
+  <<script src="js/fullcalendar.min.js"></script>
+    <!-- Full Google Calendar - Calendar -->
+    <script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+    <!--script for this page only-->
+    <script src="js/calendar-custom.js"></script>
+    <script src="js/jquery.rateit.min.js"></script>
+    <!-- custom select -->
+    <script src="js/jquery.customSelect.min.js"></script>
+    <script src="assets/chart-master/Chart.js"></script>
+
+    <!--custome script for all page-->
+    <script src="js/scripts.js"></script>
+    <!-- custom script for this page-->
+    <script src="js/sparkline-chart.js"></script>
+    <script src="js/easy-pie-chart.js"></script>
+    <script src="js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="js/xcharts.min.js"></script>
+    <script src="js/jquery.autosize.min.js"></script>
+    <script src="js/jquery.placeholder.min.js"></script>
+    <script src="js/gdp-data.js"></script>
+    <script src="js/morris.min.js"></script>
+    <script src="js/sparklines.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <script>
+      //knob
+      $(function() {
+        $(".knob").knob({
+          'draw': function() {
+            $(this.i).val(this.cv + '%')
+          }
+        })
+      });
+
+      //carousel
+      $(document).ready(function() {
+        $("#owl-slider").owlCarousel({
+          navigation: true,
+          slideSpeed: 300,
+          paginationSpeed: 400,
+          singleItem: true
+        });
+      });
+      $(function() {
+        $('select.styled').customSelect();
+      });
+
+      /* ---------- Map ---------- */
+      $(function() {
+        $('#map').vectorMap({
+          map: 'world_mill_en',
+          series: {
+            regions: [{
+              values: gdpData,
+              scale: ['#000', '#000'],
+              normalizeFunction: 'polynomial'
+            }]
+          },
+          backgroundColor: '#eef3f7',
+          onLabelShow: function(e, el, code) {
+            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+          }
+        });
+      });
+    </script>
+    <script>
+        var naqd=0,plastik=0,pulkochrish=0,qarz=0,summaqarz=0,opshi=0,summa=0,c=0;
+        function day(){
+          // console.log(<%- JSON.stringify(Customer)%>)
+          summaqarz=<%- JSON.stringify(summaqarz)%>
+          vazvrat=<%- JSON.stringify(vazvrat)%>
+
+        var today = new Date();
+    var mydate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var tolanganqarz=0;
+    var mydate1 = (today.getMonth()+1)+'/'+(today.getDate())+'/'+today.getFullYear();
+  
+        var data=<%- JSON.stringify(data)%>
+    
+            for (let i=0;i<data.date.length;i++){
+                if (mydate==data.date[i])
+                {
+                    naqd+=data.naqd[i];
+                    plastik+=data.plastik[i];
+                    pulkochrish+=data.pulkochirish[i];
+                    qarz+=data.qarz[i];
+                }
+            }
+            vazvratcha=0;
+        for (let i =0;i<vazvrat.length;i++){
+          if (vazvrat[i].date.indexOf(mydate)==0){
+          
+            vazvratcha+=vazvrat[i].naqd;
+            vazvratcha+=vazvrat[i].plastik;
+            vazvratcha+=vazvrat[i].pulkochirish;
+            vazvratcha+=vazvrat[i].qarz;
+          }
+        }
+            document.getElementById('naqd').innerHTML+=`Наличные:${naqd}`;
+            document.getElementById('plastik').innerHTML+=`Пластик:${plastik}`
+            document.getElementById('pulkochirish').innerHTML+=`Перемещение Денег:${pulkochrish}`
+            document.getElementById('qarz').innerHTML+=`Долг:${qarz}`
+            document.getElementById('comment').innerHTML+=`Дневная Торговля:${mydate}`
+            document.getElementById('comment1').innerHTML+=`Всего:${qarz+plastik+pulkochrish+naqd} so'm `
+      }
+        function month1(year,month){
+           naqd=0,plastik=0,pulkochrish=0,qarz=0,summaqarz=0,opshi=0,summa=0,c=0;
+          document.getElementById('sssa1').style.display="block"
+            document.getElementById('sssa2').style.display="block"
+            document.getElementById('sssa3').style.display="block"
+            document.getElementById('sssa4').style.display="block"
+
+        var today = new Date();
+        var mydate = year+'-'+month+"-";
+        var tolanganqarz=0;
+        var mydate1 = "-"+(month)+"-";
+        // console.log(mydate1)
+        var data=<%- JSON.stringify(data)%>
+        var dayprice=<%- JSON.stringify(dayprice)%>
+        vazvrat=<%- JSON.stringify(vazvrat)%>
+      var kunliksavdo1=0;
+      // console.log(dayprice)
+      // console.log(data)
+       myset=new Set()
+       if (dayprice.length>0){
+       for (let i=0;i<dayprice[0].day.length;i++){
+            if (dayprice[0].day[i].indexOf(mydate)==0){
+kunliksavdo1+=dayprice[0].payment[i];
+            }
+          }
+        }
+      for (let i=0;i<data.date.length;i++){
+                if (data.date[i].indexOf(mydate)==0)
+                {
+myset.add(data.date[i]);     
+                    naqd+=data.naqd[i];
+                    plastik+=data.plastik[i];
+                    pulkochrish+=data.pulkochirish[i];
+                    qarz+=data.qarz[i];
+                }
+            }
+            // console.log(myset)
+            ssss="<tr><th>День</th><th></th><th>Наличными</th><th>Пластик</th><th>Перемещение Денег</th><th>Долг</th></tr>"
+        var kunliksavdo=0;
+        
+            for (q of myset){
+          kunliksavdo=0;
+          vazvratcha=0;
+          for (let i=0;i<vazvrat.length;i++){
+            if (vazvrat[i].date.indexOf(q)==0)
+            vazvratcha=vazvratcha+vazvrat[i].naqd+vazvrat[i].plastik+vazvrat[i].qarz+vazvrat[i].pulkochirish;
+          }
+          if (dayprice.length>0){
+          for (let i=0;i<dayprice[0].day.length;i++){
+            if (q==dayprice[0].day[i]){
+kunliksavdo+=dayprice[0].payment[i];
+            }
+          }
+        }
+              var tolanganqarz1=0,naqd1=0,plastik1=0,pulkochrish1=0,qarz1=0;
+              for (let i=0;i<data.date.length;i++){
+                if (data.date[i]==q)
+                {
+                  
+                    naqd1+=data.naqd[i];
+                    plastik1+=data.plastik[i];
+                    pulkochrish1+=data.pulkochirish[i];
+                    qarz1+=data.qarz[i];
+                }
+
+            }
+            ssss+=`<tr><td>${q}<td><td>${naqd1}</td></td><td>${plastik1}</td><td>${pulkochrish1}</td><td>${qarz1}</td></tr>`
+            }
+            document.getElementById('mahsulot').innerHTML=ssss;
+            document.getElementById('naqd').innerHTML+=`Наличные:${naqd}`;
+            document.getElementById('plastik').innerHTML+=`Пластик:${plastik}`
+            document.getElementById('pulkochirish').innerHTML+=`Перемещение Денег:${pulkochrish}`
+            document.getElementById('qarz').innerHTML+=`Долг:${qarz}`
+      document.getElementById('comment').innerHTML+=`Ежемесячные Продажи:${oy(month-1)}`
+      document.getElementById('comment1').innerHTML+=`Всего:${qarz+plastik+pulkochrish+naqd} so'm`
+        }
+   function year(){
+    document.getElementById('sssa1').style.display="none"
+     document.getElementById('sssa2').style.display="none"
+     document.getElementById('sssa3').style.display="none"
+     document.getElementById('sssa4').style.display="none"
+    
+    document.getElementById('allmonth').innerHTML=`<a class="btn btn-primary" href="/savdohisoboti?name=2">Просмотр Всех Месяцев</a>`
+     var today=new Date();
+    satr="";
+    satr=`<tr><th>Номер</th><th>месяц</th><th>Информация</th></tr>`
+    for (let i=0;i<12;i++){
+      
+    satr+=`<tr><td>${i+1}</td><td>${oy(i)}</td><td><button class="btn btn-primary" onclick=man(${today.getFullYear()},${i})>Информация</button></td></tr>`    }
+    var mydate = today.getFullYear();
+    document.getElementById('mahsulot').innerHTML=satr;
+   
+            // document.getElementById('naqd').style.display=`none`;
+            // document.getElementById('plastik').style.display=`none`
+            // document.getElementById('pulkochirish').style.display=`none`
+            // document.getElementById('qarz').style.display=`none`
+            // document.getElementById('comment').style.display=`none`
+            // document.getElementById('comment1').style.display=`none`
+            
+           
+        }
+        var name=<%- JSON.stringify(name)%>
+        if (name=="0"){
+day()
+        }
+        else if (name=="1"){
+          var tod=new Date()
+            month1(tod.getFullYear(),tod.getMonth()+1);
+        }
+        else{
+            year();
+        }
+        function man(s,n){
+          // console.log(s,n)
+          month1(s,n+1)
+        }
+      function san(){
+        location.reload();
+        year();
+      }
+        function oy(s){
+        month=["Yanvar","Fevral","Mart","Aprel","May","Iyun","Iyul","Avgust","Sentabr","Oktabr","Noyabr","Dekabr"];
+        return month[s];
+      }
+    
+
+    </script>
+ 
+</body>
+
+</html>
