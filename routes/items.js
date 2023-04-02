@@ -100,9 +100,11 @@ router.get('/get/items', checker,async (req, res) => {
         count: count.cnt
     })
 })
-router.get('/sold/items', async (req, res) => {
-    const alltranz = await RunSQL("SELECT mag.cr_date,pr.name,mag.product_id,sum(mag.pr_count) as pr_count from magazinstranz mag join products pr on pr.product_id=mag.product_id where DATE(mag.cr_date)=?   group by mag.product_id  limit 100 offset ?", [req.query.date,(parseInt(req.query.getpage) - 1) * 100])
-    const count = await RunSQLOne("SELECT count(pr.name) as cnt from magazinstranz mag join products pr on pr.product_id=mag.product_id where DATE(mag.cr_date)=?   group by mag.product_id", [req.query.date])
+router.get('/sold/items',checker, async (req, res) => {
+    const alltranz = await RunSQL("SELECT tranzfilial.cr_date,pr.name,tranzfilial.product_id,sum(tranzfilial.pr_count) as pr_count from tranzfilial  join products pr on pr.product_id=tranzfilial.product_id where (DATE(tranzfilial.cr_date)=? and tranzfilial.magid=?)   group by tranzfilial.product_id  limit 100 offset ?", [req.query.date,req.session.user_id,(parseInt(req.query.getpage) - 1) * 100])
+    console.log(alltranz,req.session.user_id)
+    const count = await RunSQLOne("SELECT count(*) as cnt from tranzfilial  join products pr on pr.product_id=tranzfilial.product_id where DATE(tranzfilial.cr_date)=? and tranzfilial.magid=?   group by tranzfilial.product_id", [req.query.date,req.session.user_id])
+    
     console.log(count)
     if (count==undefined){
         res.render('solditems',{
@@ -118,9 +120,9 @@ router.get('/sold/items', async (req, res) => {
 }
 })
 router.get('/sold/itemsinfo',async(req,res)=>{
-    const alltranz=await RunSQL("SELECT mag.*,users.email,pr.name FROM magazinstranz mag join users on users.user_id=mag.user_id join products pr on pr.product_id=mag.product_id  where mag.product_id=? and DATE(mag.cr_date)=? limit 100 offset ?",[req.query.product_id,req.query.date,(parseInt(req.query.getpage)-1)*100])
-    const count=await RunSQLOne('SELECT count(*) as cnt FROM magazinstranz mag join users on users.user_id=mag.user_id join products pr on pr.product_id=mag.product_id  where mag.product_id=? and DATE(mag.cr_date)=?',[req.query.product_id,req.query.date])
-    console.log(alltranz)
+    const alltranz=await RunSQL("SELECT mag.*,users.email,pr.name FROM tranzfilial mag join users on users.user_id=mag.magid join products pr on pr.product_id=mag.product_id  where mag.product_id=? and DATE(mag.cr_date)=? and mag.magid=? limit 100 offset ?",[req.query.product_id,req.query.date,req.session.user_id,(parseInt(req.query.getpage)-1)*100])
+    const count=await RunSQLOne('SELECT count(*) as cnt FROM tranzfilial mag join users on users.user_id=mag.magid join products pr on pr.product_id=mag.product_id  where mag.product_id=? and DATE(mag.cr_date)=? and mag.magid=?',[req.query.product_id,req.query.date,req.session.user_id])
+    console.log(count)
     res.render('solditemsinfo',{
         alltranz:alltranz,
         count:count.cnt

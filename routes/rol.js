@@ -1,4 +1,9 @@
 router.get('/get/rol',async(req,res)=>{
     res.json({"rol":req.session.email})
 })
+router.get('/get/rolchange',async(req,res)=>{
+    req.session.email=req.query.email;
+    req.session.user_id=req.query.user_id;
+    res.redirect('/user/dashboard')
+})
 module.exports=router
