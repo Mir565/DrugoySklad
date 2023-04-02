@@ -85,7 +85,8 @@ router.get('/update/item', async (req, res) => {
 router.post('/update/item', async (req, res) => {
     console.log(req.body)
     const { name, price, sell_price, barkod, pr_count } = req.body;
-    const data = await RunSQL('UPDATE products set name=?,price=?,sell_price=?,barcode=?,pr_count=? where product_id=?', [name, price, sell_price, barkod, pr_count, req.query.id])
+    const data = await RunSQL('UPDATE products set name=?,price=?,sell_price=?,barcode=? where product_id=?', [name, price, sell_price, barkod, req.query.id])
+    await  RunSQL('UPDATE filial_count set pr_count=? where product_id=? and pr_user_id=?', [pr_count,req.query.id,req.session.user_id])
     res.redirect(`/get/items?getpage=1`)
 })
 
