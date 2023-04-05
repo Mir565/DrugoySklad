@@ -1,9 +1,16 @@
 router.get('/get/rol',async(req,res)=>{
-    res.json({"rol":req.session.email})
+    await new Promise(resolve => setTimeout(resolve, 50));
+    res.json({"user":req.session.email,"rol":req.session.rol})
 })
-router.get('/get/rolchange',async(req,res)=>{
+router.get('/get/rolchange',checker,async(req,res)=>{
+    console.log(req.query)
     req.session.email=req.query.email;
     req.session.user_id=req.query.user_id;
-    res.redirect('/user/dashboard')
+    const data=await RunSQL("SELECT * FROM USERS")
+    const count=await RunSQL("SELECT count(*) from USERS")
+    res.render('alluser',{
+        users:data,
+        count:count
+    })
 })
 module.exports=router

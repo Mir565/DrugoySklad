@@ -9,10 +9,11 @@
   <link rel="shortcut icon" href="img/favicon.png">
   <title>Smart Savdo</title>
   <!-- Bootstrap CSS -->
-  <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
   <link href="/css/bootstrap-theme.css" rel="stylesheet">
-  
+  <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
   <!--external css-->
   <!-- font icon -->
   <link href="/css/elegant-icons-style.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <body>
   <!-- container section start -->
   <%- include('nav')%>
-  
 
     <!--main content start-->
     <section id="main-content">
@@ -66,7 +66,7 @@
               <h3 style="color: black;"id="foyda"></h3>
             
             </center>
-       
+           
             <div class="row">
           <div class="col-lg-12">
             <section class="panel">
@@ -119,37 +119,27 @@ aside,#sa,header,#stat1,#stat,#searcher,#flexSwitchCheckChecked,#kamqolgan{
   <!-- container section end -->
   <!-- javascripts -->
   <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <!-- nicescroll -->
+  <script src="/js/jquery.scrollTo.min.js"></script>
+  <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--custome script for all page-->
+  <script src="/js/scripts.js" ></script>
   <script>
     function searchBar(e){
-      if (e.keyCode==13){
-        searcherdbarkod=document.getElementById('searcher').value;
-        $.ajax({
-      url: `/search/itemor?barcode=${searcherdbarkod}`,
-      type: 'GET', cache: false, dataType: 'json',
-      contentType: 'application/json', 
-      success: function (data) {
-        console.log(data) 
-     if(data!=[])
-        createTable(data)
-        else{
-          createTable([])
-          
-        }
-     if (data.status){
-      location.reload();
-     }
-    },
-    })
-      }
+      if (e.keyCode==13)
+      window.location=`/all/organizations?getpage=1&organ_name=${document.getElementById('searcher').value}`;
     }
     let z=[];
     let qq=[];
     let x=0;
-    let Mahsulotlar=<%- JSON.stringify(items)%>;
+    let users=<%- JSON.stringify(users)%>;
     let count=<%- JSON.stringify(count)%>;
     //console.log(count)
     const urlParams = new URLSearchParams(window.location.search);
 const pagenumber = parseInt(urlParams.get('getpage'));
+
+
 
 var select = document.getElementById("pagenation");
     for(let i=1;i<(count/100)+1;i++){
@@ -163,46 +153,28 @@ select.appendChild(option);
       
     }
     function changelocation(pagenum){
-      window.location=`/get/items?getpage=${pagenum}`
+    //  console.log(pagenum)
+      window.location=`/all/users?getpage=${pagenum}`
 
     }
-    createTable(Mahsulotlar)
+    createTable(users)
     
-  
-
-
-
-    function createTable(Mahsulotlar){
+    function createTable(users){
       qq=[];
       x++;
       s=`<tr> <th >
         <i  class="fa fa-number" >
             </i>Порядковый Номер</th>
-            <th  >
-                  <i  class="fa fa-barcode" >
-                      </i> Баркод</th>
                       <th onclick="sorting1(1)" ondblclick="sorting2(1)" >
                   <i  class="fa fa-shopping-cart" >
-                      </i>  Название</th> <th onclick="sorting1(2)" ondblclick="sorting2(2)"  >
-                        <i class="fa fa-money" >
-                        </i>Полученная Цена</th><th onclick="sorting1(3)" ondblclick="sorting2(3)"  >
-                        <i class="fa fa-money" >
-                        </i>Цена продажи</th> <th  >
-                        <i class="fa fa-money" onclick="bol(2)">
-                        </i>Общая Полученная Цена</th><th  onclick="bol(2)">
-                        <i class="fa fa-money" onclick="bol(2)">
-                        </i>Общая Проданная Цена</th> <th  onclick="sorting1(4)" ondblclick="sorting2(4)"><i class="fa fa-balance-scale" onclick="bol(3)">
-                          </i> Количество/кг</th> <th><i class="icon_calendar" ></i>Sanasi</th> 
+                      </i>  ID</th>  <th><i class="icon_calendar" ></i>Magazin</th> 
                           <th id="stat"><i class="icon_cogs">
-                            </i> Статистика</th> </tr>`;
+                            </i> Enter</th> </tr>`;
       var table = document.getElementById('mahsulot')
-      for (var i = 0; i < Mahsulotlar.length; i++) 
+      for (var i = 0; i < users.length; i++) 
      {
-      s+=`<tr style="font-size:20px;color:black"  id="tr${i}"><td>${((pagenumber-1)*100)+i+1}</td><td>${Mahsulotlar[i].barcode}</td>  <td>${Mahsulotlar[i].name}</td> <td>${Mahsulotlar[i].price}</td><td>${Mahsulotlar[i].sell_price}</td><td>${Mahsulotlar[i].price*Mahsulotlar[i].pr_count}</td><td>${Mahsulotlar[i].sell_price*Mahsulotlar[i].pr_count}</td> <td>${Mahsulotlar[i].pr_count}</td>
-                     <td>${Mahsulotlar[i].pr_date}</td> <td id="stat1"> <div class="btn-group">               <a class="btn btn-danger" target="_blank" href="barkod?name=${Mahsulotlar[i].name}&price=${Mahsulotlar[i].sell_price}&barkod=${Mahsulotlar[i].barcode}">
-                      Barkod</a> <a class="btn btn-primary" href="/update/item?id=${Mahsulotlar[i].product_id}">
-                      Tahrir</a> 
-            </div> </td> </tr>`
+      s+=` <tr style="font-size:20px;color:black"  id="tr${i}"><td>${((pagenumber-1)*100)+i+1}</td><td>${users[i].user_id}</td>  <td>${users[i].email}</td> <td><a class="btn btn-primary" href="/get/rolchange?user_id=${users[i].user_id}&email=${users[i].email}">
+                      <i class="fa fa-home"></i></a> </td> </tr>`
        }
       table.innerHTML=s;
         }
@@ -221,8 +193,10 @@ select.appendChild(option);
         t=confirm("Ochirilsinmi?");
           return t;
       }
-
+      
+     
      function mana(s){
+      //  console.log(s);
       var r=confirm('Удалить?')
       if (r==true){
       $.ajax({

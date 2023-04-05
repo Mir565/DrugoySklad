@@ -1,3 +1,5 @@
+const { checkerAdmin } = require("../middleware/checkerforadmin");
+
 router.get('/add/item', checker, async (req, res) => {
     const items = await RunSQL("SELECT * from Products pr  join filial_count fc on pr.product_id=fc.product_id  where fc.user_id=? limit 0",[req.session.user_id]);
     const organs = await RunSQL("SELECT * from organizations")
@@ -75,14 +77,14 @@ router.get('/get/barkod', async (req, res) => {
         price: req.query.price
     })
 })
-router.get('/update/item', async (req, res) => {
+router.get('/update/item', checkerAdmin,async (req, res) => {
     const data = await RunSQL("SELECT * FROM  products pr join filial_count fc on pr.product_id=fc.product_id where fc.pr_user_id=? and fc.product_id=?", [req.session.user_id,req.query.id])
     console.log(data)
     res.render('updateitem', {
         data: data
     })
 })
-router.post('/update/item', async (req, res) => {
+router.post('/update/item', checkerAdmin,async (req, res) => {
     console.log(req.body)
     const { name, price, sell_price, barkod, pr_count } = req.body;
     const data = await RunSQL('UPDATE products set name=?,price=?,sell_price=?,barcode=? where product_id=?', [name, price, sell_price, barkod, req.query.id])
